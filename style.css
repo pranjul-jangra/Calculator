@@ -22,7 +22,8 @@ html {
     padding: 8px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.833);
-    border: 1px solid red;
+    border: 1px solid black;
+    box-shadow: 0 0 40px;
 }
 
 #display {
@@ -38,7 +39,7 @@ html {
     font-weight: 600;
     border: 1px solid black;
     border-radius: 4px;
-    background: linear-gradient(to top left, #00ffff, #ffff00, #ffc0cb);
+    background: linear-gradient(to bottom right, gray, white,white);
     overflow: hidden;
     text-wrap: nowrap;
 }
