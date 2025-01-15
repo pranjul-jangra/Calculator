@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A user-friendly calculator web application with basic arithmetic and root functions. Perform calculations directly in your browser.">
+    <meta name="keywords" content="calculator, web calculator, arithmetic calculator, online calculator">
+    <meta name="robots" content="index, follow">
+    <title>Online Calculator - Perform Quick Calculations</title> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <div class="scDisplay" aria-hidden="true"></div>    <!--secondary display -->
+    <div class="popup" aria-hidden="true"></div>        <!--popup box-->
+    
+    <section class="container">
+        <div id="display" aria-live="polite" aria-atomic="true">Expression here</div>      <!--user visible display-->
+
+        <div class="roots">
+            <button class="squareRoot" aria-label="Square Root">√</button>
+            <button class="cubeRoot" aria-label="Cube Root">∛</button>
+            <button class="leftBracket" aria-label="Left Bracket">(</button>
+            <button class="rightBracket" aria-label="Right Bracket">)</button>
+        </div>
+
+        <div class="arithmeticOperators">
+            <button class="clearAll" aria-label="clearAll">C</button>
+            <button class="operators" aria-label="Modulo">%</button>
+            <button class="operators" aria-label="Divide">/</button>
+            <button class="clearOne" aria-label="Clear Last Entry">←</button>
+            <button aria-label="Seven">7</button>
+            <button aria-label="Eight">8</button>
+            <button aria-label="Nine">9</button>
+            <button class="operators" aria-label="Multiply">*</button>
+            <button aria-label="Four">4</button>
+            <button aria-label="Five">5</button>
+            <button aria-label="Six">6</button>
+            <button class="operators" aria-label="Subtract">-</button>
+            <button aria-label="One">1</button>
+            <button aria-label="Two">2</button>
+            <button aria-label="Three">3</button>
+            <button class="operators" aria-label="Add">+</button>
+            <button aria-label="Zero">0</button>
+            <button aria-label="Decimal Point">.</button>
+            <button class="equalTo" aria-label="Equals To">=</button>
+        </div>
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

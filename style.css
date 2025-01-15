@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body,
+html {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #dadada;
+    overflow: hidden;
+}
+
+.container {
+    width: 400px;
+    aspect-ratio: 1/1;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.833);
+    border: 1px solid red;
+}
+
+#display {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-inline: 10px;
+    margin-bottom: 22px;
+    margin-top: 6px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border: 1px solid black;
+    border-radius: 4px;
+    background: linear-gradient(to top left, #00ffff, #ffff00, #ffc0cb);
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
+.roots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+    & > button {
+        line-height: 3rem;
+        background: yellow;
+        border: 1px solid pink;
+    }
+}
+
+.arithmeticOperators {
+    all: unset;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    aspect-ratio: 1/1;
+}
+
+.clearOne,
+.clearAll {
+    background-color: #ff1010c5;
+}
+
+.equalTo {
+    grid-column: span 2;
+    font-size: 4rem;
+    line-height: 2rem;
+    background-color: rgba(108, 165, 23, 0.758);
+    filter: brightness(1.4);
+}
+
+button {
+    all: unset;
+    font-size: 2rem;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+button.operators {
+    background-color: cyan;
+    font-weight: 600;
+}
+
+.scDisplay {
+    display: none;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    padding-inline: 20px;
+    padding-block: 6px;
+    border-radius: 40px;
+    text-wrap: nowrap;
+    font-weight: 600;
+    text-shadow: 0.6px 0.5px white;
+    background: linear-gradient(to bottom, #6d6d6d, #a6a6a6, #a6a6a6, #a6a6a6, #6d6d6d);
+    font-size: 1.2rem;
+    z-index: 3;
+}
