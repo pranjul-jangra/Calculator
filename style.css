@@ -113,3 +113,17 @@ button.operators {
     font-size: 1.2rem;
     z-index: 3;
 }
+
+
+@media (max-width: 768px){
+    body,
+    html {
+        display: flex;
+        justify-content: center;
+        align-items: top;
+    }
+
+    .container{
+        margin-top: 30px;
+    }
+}
