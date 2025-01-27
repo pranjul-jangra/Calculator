@@ -12,7 +12,8 @@ function clearOne() { // function to clearOne
     if (
         display.textContent === 'Expression here' ||
         display.textContent === '0' ||
-        display.textContent.length === 1
+        display.textContent.length === 1 ||
+        display.textContent === 'NaN'
     ) {
         clearAll();
         return;
@@ -28,8 +29,11 @@ function compute() { // function for computing result
         showPopup('Incomplete expression');
         return;
     }
-    if(display.textContent === 'Expression here'){
-        showPopup('First provide an expression');
+    if(
+        display.textContent === 'Expression here' ||
+        display.textContent === 'NaN'
+    ){
+        showPopup('Provide a valid expression');
         clearAll();
         return ;
     }
@@ -76,7 +80,8 @@ document.querySelector('.roots').addEventListener('click', (e) => {
     if (e.target.textContent === '(') { // inserting brackets
         if (
             display.textContent === 'Expression here' ||
-            display.textContent === '0'
+            display.textContent === '0' ||
+            display.textContent === 'NaN'
         ) {
             assignToDisplay('(', '(');
             return;
@@ -115,15 +120,17 @@ document.querySelector('.roots').addEventListener('click', (e) => {
         }
 
         if (display.textContent.at(-1) === '(') { // Prevent empty braces "()"
-            showPopup('Cannot insert empty braces');
+            showPopup("Can't insert empty braces");
             return;
         }
 
-        if (
-            display.textContent.at(-1) === '.' ||
-            /[+\-*/%]/.test(display.textContent.at(-1))
-        ) {
+        if (/[+\-*/%]/.test(display.textContent.at(-1))) {
             showPopup('Invalid insertion before closing brace');
+            return;
+        }
+
+        if(display.textContent.at(-1) === '.'){
+            insertToDisplay('0)', '0)');
             return;
         }
 
@@ -133,7 +140,8 @@ document.querySelector('.roots').addEventListener('click', (e) => {
     if (e.target.textContent === '√') { // inserting square roots
         if (
             display.textContent === 'Expression here' ||
-            display.textContent === '0'
+            display.textContent === '0' ||
+            display.textContent === 'NaN'
         ) {
             assignToDisplay('√(', 'Math.sqrt(');
             return;
@@ -153,7 +161,8 @@ document.querySelector('.roots').addEventListener('click', (e) => {
     } else if (e.target.textContent === '∛') { // inserting cube roots
         if (
             display.textContent === 'Expression here' ||
-            display.textContent === '0'
+            display.textContent === '0' ||
+            display.textContent === 'NaN'
         ) {
             assignToDisplay('∛(', 'Math.cbrt(');
             return;
@@ -203,7 +212,8 @@ document.querySelector('.arithmeticOperators').addEventListener('click', (e) => 
 
         if (             //dot at start
             display.textContent === 'Expression here' ||
-            display.textContent === ''
+            display.textContent === '' ||
+            display.textContent === 'NaN'
         ) {
             assignToDisplay('0.', '0.');
             return;
@@ -225,7 +235,8 @@ document.querySelector('.arithmeticOperators').addEventListener('click', (e) => 
     if (/[+\-*/%]/.test(e.target.textContent)) {
         if (       //prevent inserting operator at start except for '-'
             display.textContent === 'Expression here' ||
-            display.textContent === ''
+            display.textContent === '' ||
+            display.textContent === 'NaN'
         ) {
             if (/[+*/%]/.test(e.target.textContent)) {
                 showPopup(`Can't insert ${e.target.textContent} at the beginning`);
@@ -278,7 +289,8 @@ document.querySelector('.arithmeticOperators').addEventListener('click', (e) => 
         if (
             display.textContent === 'Expression here' ||
             display.textContent === '0' ||
-            display.textContent === ''
+            display.textContent === '' ||
+            display.textContent === 'NaN'
         ) {
             assignToDisplay(e.target.textContent, e.target.textContent);
             return;
