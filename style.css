@@ -8,11 +8,11 @@
 body,
 html {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #dadada;
+    background-color: #9ca1a093;
     overflow: hidden;
 }
 
@@ -20,7 +20,7 @@ html {
     width: 400px;
     min-height: 545px;
     aspect-ratio: 1/1;
-    padding: 8px;
+    padding: 8px 12px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.833);
     border: 1px solid black;
@@ -40,7 +40,7 @@ html {
     font-weight: 600;
     border: 1px solid black;
     border-radius: 4px;
-    background: linear-gradient(to bottom right, gray, white,white);
+    background-color: aliceblue;
     overflow: hidden;
     text-wrap: nowrap;
 }
@@ -52,8 +52,8 @@ html {
     margin-bottom: 8px;
     & > button {
         line-height: 3rem;
-        background: yellow;
-        border: 1px solid pink;
+        background: rgb(255, 255, 59);
+        border: 1px solid grey;
     }
 }
 
@@ -68,7 +68,7 @@ html {
 
 .clearOne,
 .clearAll {
-    background-color: #ff1010c5;
+    background-color: crimson;
 }
 
 .equalTo {
@@ -89,11 +89,17 @@ button {
     border-radius: 8px;
     border: 1px solid black;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
 }
 
 button.operators {
     background-color: cyan;
     font-weight: 600;
+}
+button:active {
+    transform: scale(0.95);
+    outline: 1px solid cyan;
+    outline-offset: 1px;
 }
 
 .scDisplay {
@@ -104,15 +110,16 @@ button.operators {
     display: none;
     position: fixed;
     bottom: 20px;
-    padding-inline: 20px;
-    padding-block: 6px;
-    border-radius: 40px;
+    padding: 12px 24px;
+    border-radius: 12px;
     text-wrap: nowrap;
     font-weight: 600;
-    text-shadow: 0.6px 0.5px white;
-    background: linear-gradient(to bottom, #6d6d6d, #a6a6a6, #a6a6a6, #a6a6a6, #6d6d6d);
-    font-size: 1.2rem;
+    background-color: #2f3542;
+    color: white;
+    font-size: 1rem;
     z-index: 3;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 

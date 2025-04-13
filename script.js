@@ -5,12 +5,12 @@ const display = document.querySelector('#display');
 
 // functions : ---------------------------------------------------------------------
 function clearAll() { // function to clearAll
-    assignToDisplay('Expression here', '');
+    assignToDisplay('Let’s Calculate!', '');
 }
 
 function clearOne() { // function to clearOne
     if (
-        display.textContent === 'Expression here' ||
+        display.textContent === 'Let’s Calculate!' ||
         display.textContent === '0' ||
         display.textContent.length === 1 ||
         display.textContent === 'NaN'
@@ -30,7 +30,7 @@ function compute() { // function for computing result
         return;
     }
     if(
-        display.textContent === 'Expression here' ||
+        display.textContent === 'Let’s Calculate!' ||
         display.textContent === 'NaN'
     ){
         showPopup('Provide a valid expression');
@@ -41,7 +41,7 @@ function compute() { // function for computing result
         const result = eval(secondaryDisplay.textContent);
         if (result === Infinity) {       //handling division by zero
             showPopup('Invalid format: Division by zero');
-            assignToDisplay('Expression here', '');
+            assignToDisplay('Let’s Calculate!', '');
             return;
         }
         assignToDisplay(result, result);
@@ -50,13 +50,75 @@ function compute() { // function for computing result
     }
 }
 
-function showPopup(message) { // popup message
+let popupTimeout;
+function showPopup(message) {
     popup.textContent = message;
     popup.style.display = 'block';
-    setTimeout(() => {
+    clearTimeout(popupTimeout);
+    popupTimeout = setTimeout(() => {
         popup.style.display = 'none';
     }, 3000);
 }
+
+document.addEventListener('keydown', (e) => {
+    const key = e.key;
+
+    // Prevent default behavior for some keys like Backspace or Enter
+    if (['Backspace', 'Enter'].includes(key)) e.preventDefault();
+
+    const arithmeticContainer = document.querySelector('.arithmeticOperators');
+    const rootsContainer = document.querySelector('.roots');
+
+    // Mapping keys to buttons
+    const keyMap = {
+        'Enter': '=',
+        'Backspace': '←',
+        'Delete': 'C',
+        '/': '/',
+        '*': '*',
+        '-': '-',
+        '+': '+',
+        '%': '%',
+        '.': '.',
+        '(': '(',
+        ')': ')',
+    };
+
+    // If key is a digit
+    if (!isNaN(key) && key !== ' ') {
+        simulateClick(arithmeticContainer, key);
+        return;
+    }
+
+    // If key is mapped
+    if (keyMap[key]) {
+        const btnText = keyMap[key];
+        simulateClick(arithmeticContainer, btnText);
+        return;
+    }
+
+    // If key is 'r' or 'c' for square/cube root
+    if (key === 's') {
+        simulateClick(rootsContainer, '√');
+        return;
+    }
+
+    if (key === 'c') {
+        simulateClick(rootsContainer, '∛');
+        return;
+    }
+});
+
+
+function simulateClick(container, buttonText) {
+    const buttons = container.querySelectorAll('button');
+    buttons.forEach(btn => {
+        if (btn.textContent === buttonText) {
+            btn.click();
+        }
+    });
+}
+
 
 function insertToDisplay(primary, secondary) {  // concatenating the values
     display.textContent += primary;
@@ -79,7 +141,7 @@ document.querySelector('.roots').addEventListener('click', (e) => {
 
     if (e.target.textContent === '(') { // inserting brackets
         if (
-            display.textContent === 'Expression here' ||
+            display.textContent === 'Let’s Calculate!' ||
             display.textContent === '0' ||
             display.textContent === 'NaN'
         ) {
@@ -139,7 +201,7 @@ document.querySelector('.roots').addEventListener('click', (e) => {
 
     if (e.target.textContent === '√') { // inserting square roots
         if (
-            display.textContent === 'Expression here' ||
+            display.textContent === 'Let’s Calculate!' ||
             display.textContent === '0' ||
             display.textContent === 'NaN'
         ) {
@@ -160,7 +222,7 @@ document.querySelector('.roots').addEventListener('click', (e) => {
         insertToDisplay('√(', 'Math.sqrt(');
     } else if (e.target.textContent === '∛') { // inserting cube roots
         if (
-            display.textContent === 'Expression here' ||
+            display.textContent === 'Let’s Calculate!' ||
             display.textContent === '0' ||
             display.textContent === 'NaN'
         ) {
@@ -211,7 +273,7 @@ document.querySelector('.arithmeticOperators').addEventListener('click', (e) => 
         }
 
         if (             //dot at start
-            display.textContent === 'Expression here' ||
+            display.textContent === 'Let’s Calculate!' ||
             display.textContent === '' ||
             display.textContent === 'NaN'
         ) {
@@ -234,7 +296,7 @@ document.querySelector('.arithmeticOperators').addEventListener('click', (e) => 
 
     if (/[+\-*/%]/.test(e.target.textContent)) {
         if (       //prevent inserting operator at start except for '-'
-            display.textContent === 'Expression here' ||
+            display.textContent === 'Let’s Calculate!' ||
             display.textContent === '' ||
             display.textContent === 'NaN'
         ) {
@@ -287,7 +349,7 @@ document.querySelector('.arithmeticOperators').addEventListener('click', (e) => 
 
     if (/\d/.test(e.target.textContent)) {
         if (
-            display.textContent === 'Expression here' ||
+            display.textContent === 'Let’s Calculate!' ||
             display.textContent === '0' ||
             display.textContent === '' ||
             display.textContent === 'NaN'
