@@ -43,6 +43,11 @@ function compute() { // function for computing result
             showPopup('Invalid format: Division by zero');
             assignToDisplay('Let’s Calculate!', '');
             return;
+
+        }else if(isNaN(result)){      // handling NaN
+            showPopup("NaN: Expression can't be computed");
+            assignToDisplay('Let’s Calculate!', '');
+            return;
         }
         assignToDisplay(result, result);
     } catch (error) {

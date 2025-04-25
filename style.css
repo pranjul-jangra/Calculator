@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    user-select: none;
 }
 
 body,
@@ -20,11 +19,11 @@ html {
     width: 400px;
     min-height: 545px;
     aspect-ratio: 1/1;
-    padding: 8px 12px;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.833);
+    padding: 0.8rem;
+    border-radius: 20px;
+    background-color: #1c1c1c;
     border: 1px solid black;
-    box-shadow: inset 0 0 3px 2px #b3b3b3;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
 #display {
@@ -33,16 +32,17 @@ html {
     display: flex;
     justify-content: right;
     align-items: center;
-    padding-inline: 10px;
-    margin-bottom: 22px;
     margin-top: 6px;
-    font-size: 1.4rem;
-    font-weight: 600;
     border: 1px solid black;
-    border-radius: 4px;
     background-color: aliceblue;
     overflow: hidden;
-    text-wrap: nowrap;
+    white-space: nowrap;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+
 }
 
 .roots {
@@ -52,8 +52,13 @@ html {
     margin-bottom: 8px;
     & > button {
         line-height: 3rem;
-        background: rgb(255, 255, 59);
+        background-color: #fcd665;
         border: 1px solid grey;
+        font-size: 1.4rem;
+
+        &:hover{
+            background-color: #ebc247;
+        }
     }
 }
 
@@ -68,14 +73,17 @@ html {
 
 .clearOne,
 .clearAll {
-    background-color: crimson;
+    background-color: #e53846;
+    &:hover{
+        background-color: #ce2130;
+    }
 }
 
 .equalTo {
     grid-column: span 2;
     font-size: 4rem;
     line-height: 2rem;
-    background-color: rgba(108, 165, 23, 0.758);
+    background-color: #53c783;
     filter: brightness(1.4);
 }
 
@@ -90,16 +98,28 @@ button {
     border: 1px solid black;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
+    transition: all 0.1s ease;
+
+    &:hover{
+        background-color: rgb(135, 194, 194);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &:focus-visible{
+        outline: 1px solid white;
+        outline-offset: 0.5px;
+    }
 }
 
 button.operators {
-    background-color: cyan;
     font-weight: 600;
-}
-button:active {
-    transform: scale(0.95);
-    outline: 1px solid cyan;
-    outline-offset: 1px;
+    background-color: #00cfe8;
+    &:hover{
+        background-color: #00b1c5;
+    }
 }
 
 .scDisplay {
