@@ -3,53 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A user-friendly calculator web application with basic arithmetic and root functions. Perform calculations directly in your browser.">
-    <meta name="keywords" content="calculator, web calculator, arithmetic calculator, online calculator">
-    <meta name="robots" content="index, follow">
-    <title>Online Calculator - Perform Quick Calculations</title> 
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="./assets/web-icon.png">
+    <meta name="description" content="A modern, feature-rich calculator web application with scientific functions and history tracking.">
+    <meta name="keywords" content="calculator, scientific calculator, web calculator, math calculator">
+    <title>Scientific Calculator - Professional Online Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <div class="app-container">
+        <div class="calculator-wrapper">
+            <p class="calculator-subtitle">Scientific Calculator</p>
+            
+            <div class="display-container">
+                <div class="memory-indicator" id="memoryIndicator"></div>
 
-
-    <div class="scDisplay" aria-hidden="true"></div>    <!--secondary display -->
-    <div class="popup" aria-hidden="true"></div>        <!--popup box-->
+                <div class="secondary-display" id="secondaryDisplay"></div>
+                <div id="display" aria-live="polite" aria-atomic="true">Let's Calculate!</div>
+            </div>
+            
+            <!-- Memory buttons -->
+            <div class="memory-buttons">
+                <button type="button" aria-label="Memory store" onclick="memoryStore()" title="Memory Store">MS</button>
+                <button type="button" aria-label="Memory recall" onclick="memoryRecall()" title="Memory Recall">MR</button>
+                <button type="button" aria-label="Memory add" onclick="memoryAdd()" title="Memory Add">M+</button>
+                <button type="button" aria-label="Memory clear" onclick="memoryClear()" title="Memory Clear">MC</button>
+            </div>
+            
+            <!-- Scientific functions -->
+            <div class="scientific-row">
+                <button type="button" aria-label="sin" class="btn-function" onclick="insertFunction('sin(')" title="Sine">sin</button>
+                <button type="button" aria-label="cos" class="btn-function" onclick="insertFunction('cos(')" title="Cosine">cos</button>
+                <button type="button" aria-label="tan" class="btn-function" onclick="insertFunction('tan(')" title="Tangent">tan</button>
+                <button type="button" aria-label="log" class="btn-function" onclick="insertFunction('log(')" title="Logarithm">log</button>
+            </div>
+            
+            <div class="scientific-row">
+                <button type="button" aria-label="ln" class="btn-function" onclick="insertFunction('ln(')" title="Natural Logarithm">ln</button>
+                <button type="button" aria-label="power" class="btn-function" onclick="insertPower()" title="Power">x^y</button>
+                <button type="button" aria-label="square root" class="btn-function" onclick="insertFunction('√(')" title="Square Root">√</button>
+                <button type="button" aria-label="cube root" class="btn-function" onclick="insertFunction('∛(')" title="Cube Root">∛</button>
+            </div>
+            
+            <!-- Root and bracket functions -->
+            <div class="scientific-row">
+                <button type="button" aria-label="left bracket" class="btn-function" onclick="insertBracket('(')" title="Left Bracket">(</button>
+                <button type="button" aria-label="right bracket" class="btn-function" onclick="insertBracket(')')" title="Right Bracket">)</button>
+                <button type="button" aria-label="pi" class="btn-function" onclick="insertConstant('π')" title="Pi">π</button>
+                <button type="button" aria-label="euler's number" class="btn-function" onclick="insertConstant('e')" title="Euler's number">e</button>
+            </div>
+            
+            <!-- Main calculator buttons -->
+            <div class="button-container">
+                <button type="button" aria-label="clear all" class="btn-clear" onclick="clearAll()" title="Clear All">C</button>
+                <button type="button" aria-label="clear last" class="btn-clear" onclick="clearOne()" title="Clear Last">←</button>
+                <button type="button" aria-label="modulo" class="btn-operator" onclick="insertOperator('%')" title="Modulo">%</button>
+                <button type="button" aria-label="divide" class="btn-operator" onclick="insertOperator('/')" title="Divide">÷</button>
+                <button type="button" aria-label="multiply" class="btn-operator" onclick="insertOperator('*')" title="Multiply">×</button>
+                
+                <button type="button" aria-label="9" onclick="insertNumber('9')" title="Nine">9</button>
+                <button type="button" aria-label="8" onclick="insertNumber('8')" title="Eight">8</button>
+                <button type="button" aria-label="7" onclick="insertNumber('7')" title="Seven">7</button>
+                <button type="button" aria-label="6" onclick="insertNumber('6')" title="Six">6</button>
+                <button type="button" aria-label="substract" class="btn-operator" onclick="insertOperator('-')" title="Subtract">-</button>
+                
+                <button type="button" aria-label="5" onclick="insertNumber('5')" title="Five">5</button>
+                <button type="button" aria-label="4" onclick="insertNumber('4')" title="Four">4</button>
+                <button type="button" aria-label="3" onclick="insertNumber('3')" title="Three">3</button>
+                <button type="button" aria-label="2" onclick="insertNumber('2')" title="Two">2</button>
+                
+                <button type="button" aria-label="add" class="btn-operator" onclick="insertOperator('+')" title="Add">+</button>
+                <button type="button" aria-label="decimal point" onclick="insertDecimal()" title="Decimal Point">.</button>
+                <button type="button" aria-label="1" onclick="insertNumber('1')" title="One">1</button>
+                
+                <button type="button"  aria-label="0" class="btn-zero" onclick="insertNumber('0')" title="Zero">0</button>
+                <button type="button" aria-label="equal" class="btn-equals" onclick="compute()" title="Equals">=</button>
+            </div>
+        </div>
+        
+        <div class="history-panel">
+            <div class="history-header">
+                <span>History</span>
+                <button type="button" aria-label="clear history" class="history-clear" onclick="clearHistory()">Clear</button>
+            </div>
+            <div id="historyContainer">
+                <div style="color: rgba(255, 255, 255, 0.6); text-align: center; padding: 20px; font-size: 0.9rem;">
+                    No calculations yet
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <section class="container">
-        <div id="display" aria-live="polite" aria-atomic="true">Let’s Calculate!</div>      <!--user visible display-->
-
-        <div class="roots">
-            <button class="squareRoot" aria-label="Square Root">√</button>
-            <button class="cubeRoot" aria-label="Cube Root">∛</button>
-            <button class="leftBracket" aria-label="Left Bracket">(</button>
-            <button class="rightBracket" aria-label="Right Bracket">)</button>
-        </div>
-
-        <div class="arithmeticOperators">
-            <button class="clearAll" aria-label="clearAll">C</button>
-            <button class="operators" aria-label="Modulo">%</button>
-            <button class="operators" aria-label="Divide">/</button>
-            <button class="clearOne" aria-label="Clear Last Entry">←</button>
-            <button aria-label="Seven">7</button>
-            <button aria-label="Eight">8</button>
-            <button aria-label="Nine">9</button>
-            <button class="operators" aria-label="Multiply">*</button>
-            <button aria-label="Four">4</button>
-            <button aria-label="Five">5</button>
-            <button aria-label="Six">6</button>
-            <button class="operators" aria-label="Subtract">-</button>
-            <button aria-label="One">1</button>
-            <button aria-label="Two">2</button>
-            <button aria-label="Three">3</button>
-            <button class="operators" aria-label="Add">+</button>
-            <button aria-label="Decimal Point">.</button>
-            <button aria-label="Zero">0</button>
-            <button class="equalTo" aria-label="Equals To">=</button>
-        </div>
-    </section>
-
-
-    <script src="script.js"></script>
+    <div class="popup" id="popup"></div>
+    <div class="scDisplay" id="scDisplay"></div>
+    <button type="button" aria-label="speaker" id="speaker" class="speaker">🔊</button>
+    
+    <script src="./script.js"></script>
 </body>
 </html>
